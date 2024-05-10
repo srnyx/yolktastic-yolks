@@ -24,6 +24,7 @@ jobs:
           - source
           - valheim
           - thebattleforwesnoth
+          - rust
           
     steps:
       - uses: actions/checkout@v4
