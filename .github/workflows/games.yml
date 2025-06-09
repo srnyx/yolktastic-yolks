@@ -8,6 +8,9 @@ on:
       - master
     paths:
       - games/**
+permissions:
+  packages: write
+
 jobs:
   pushAMD64:
     name: "games_AMD64:${{ matrix.game }}"
@@ -31,11 +34,15 @@ jobs:
       - uses: docker/setup-buildx-action@v3
         with:
           buildkitd-flags: --debug
+      - id: lower-repo
+        name: Repository to lowercase
+        run: |
+          echo "repository=${GITHUB_REPOSITORY_OWNER@L}" >> $GITHUB_OUTPUT
       - uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.REGISTRY_TOKEN }}
+          username: ${{ steps.lower-repo.outputs.repository }}
+          password: ${{ secrets.REGISTRY_TOKEN || secrets.GITHUB_TOKEN }}
       - uses: docker/build-push-action@v6
         with:
           context: ./games/${{ matrix.game }}
@@ -43,7 +50,7 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/games:${{ matrix.game }}
+            ghcr.io/${{ steps.lower-repo.outputs.repository }}/games:${{ matrix.game }}
             ${{ github.repository_owner == 'pelican-eggs' && format('ghcr.io/parkervcp/games:{0}', matrix.game) || '' }}
   pushAll:
     name: "games_All:${{ matrix.game }}"
@@ -63,11 +70,15 @@ jobs:
       - uses: docker/setup-buildx-action@v3
         with:
           buildkitd-flags: --debug
+      - id: lower-repo
+        name: Repository to lowercase
+        run: |
+          echo "repository=${GITHUB_REPOSITORY_OWNER@L}" >> $GITHUB_OUTPUT
       - uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.REGISTRY_TOKEN }}
+          username: ${{ steps.lower-repo.outputs.repository }}
+          password: ${{ secrets.REGISTRY_TOKEN || secrets.GITHUB_TOKEN }}
       - uses: docker/build-push-action@v6
         with:
           context: ./games/${{ matrix.game }}
@@ -75,5 +86,5 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/games:${{ matrix.game }}
+            ghcr.io/${{ steps.lower-repo.outputs.repository }}/games:${{ matrix.game }}
             ${{ github.repository_owner == 'pelican-eggs' && format('ghcr.io/parkervcp/games:{0}', matrix.game) || '' }}
