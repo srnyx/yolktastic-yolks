@@ -7,9 +7,51 @@ ENV         DEBIAN_FRONTEND=noninteractive
 
 RUN         dpkg --add-architecture i386 \
 			&& apt update \
-			&& apt upgrade -y \
-			&& apt -y install tar curl gcc g++ lib32gcc-s1 libgcc-10-dev libcurl4-gnutls-dev:i386 libssl-dev:i386 libssl-dev libcurl4t64:i386 lib32stdc++6 libcurl3t64-gnutls:i386 libsdl2-2.0-0:i386 iproute2 gdb libsdl1.2debian telnet net-tools netcat tzdata libtinfo6:i386 libcurl4-gnutls-dev:i386 libncurses6:i386 libcurl4-gnutls:i386 faketime:i386 \
-			&& apt -y install lib32tinfo6 lib32z1 libtbb12 libtinfo6 libstdc++6 readline-common libncursesw6 libfontconfig1 libnss-wrapper gettext-base libc6-i386 libcurl4t64 libssl3t64 libssl3t64:i386 libc6 libc6:i386 xvfb gdb libc++-dev tini 
+			&& apt upgrade -y 
+RUN			apt -y install \
+				tar \
+				curl \
+				gcc \
+				g++ \
+				lib32gcc-s1 \
+				libgcc-10-dev \
+				libcurl4-gnutls-dev:i386 \
+				libssl-dev:i386 \
+				libssl-dev \
+				libcurl4t64:i386 \
+				lib32stdc++6 \
+				libcurl3t64-gnutls:i386 \
+				libsdl2-2.0-0:i386 \
+				iproute2 gdb \
+				libsdl1.2debian \
+				telnet \
+				net-tools \
+				netcat tzdata \
+				libtinfo6:i386 \
+				libcurl4-gnutls-dev:i386 \
+				libncurses6:i386 \
+				libcurl4-gnutls:i386 \
+				faketime:i386 \
+				lib32tinfo6 \
+				lib32z1 \
+				libtbb12 \
+				libtinfo6 \
+				libstdc++6 \
+				readline-common \
+				libncursesw6 \
+				libfontconfig1 \
+				libnss-wrapper \
+				gettext-base \
+				libc6-i386 \
+				libcurl4t64 \
+				libssl3t64 \
+				libssl3t64:i386 \
+				libc6 \
+				libc6:i386 \
+				xvfb \
+				gdb \
+				libc++-dev \
+				tini 
 
 RUN 		useradd -d /home/container -m container
 
