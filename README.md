@@ -291,6 +291,8 @@ is tagged correctly.
     * `ghcr.io/parkervcp/yolks:redis_6`
   * [`Redis 7`](/redis/7)
     * `ghcr.io/parkervcp/yolks:redis_7`
+  * [`Redis 8`](/redis/8)
+    * `ghcr.io/parkervcp/yolks:redis_8`    
 
 ### [Rust](/rust)
 
