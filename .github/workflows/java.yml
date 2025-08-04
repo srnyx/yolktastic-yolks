@@ -20,11 +20,8 @@ jobs:
       matrix:
         tag:
           - 8
-#          - 8j9
           - 11
-#          - 11j9
           - 16
-#          - 16j9
           - 17
           - 19
           - 21
@@ -43,7 +40,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ steps.lower-repo.outputs.repository }}
-          password: ${{ secrets.REGISTRY_TOKEN || secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - uses: docker/build-push-action@v6
         with:
           context: ./java
@@ -51,5 +48,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/${{ steps.lower-repo.outputs.repository }}/yolks:java_${{ matrix.tag }}
-            ${{ github.repository_owner == 'pelican-eggs' && format('ghcr.io/parkervcp/yolks:java_{0}', matrix.tag) || '' }}
+            ghcr.io/${{ steps.lower-repo.outputs.repository }}/yolktastic-yolks:java_${{ matrix.tag }}
