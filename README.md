@@ -37,3 +37,7 @@ Includes the required dependencies for [Selenium WebDriver](https://www.selenium
   * `ghcr.io/srnyx/yolktastic-yolks:java_21`
 * [`java22`](/java/22)
   * `ghcr.io/srnyx/yolktastic-yolks:java_22`
+* [`java25`](/java/25)
+  * `ghcr.io/srnyx/yolktastic-yolks:java_25`
+* [`java26`](/java/26)
+  * `ghcr.io/srnyx/yolktastic-yolks:java_26`
